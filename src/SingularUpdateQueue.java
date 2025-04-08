@@ -38,7 +38,7 @@ public class SingularUpdateQueue<Req, Res> extends Thread {
 
     private Optional<RequestWrapper<Req, Res>> take() {
         try {
-            return Optional.ofNullable(workQueue.poll(2, TimeUnit.MILLISECONDS));
+            return Optional.ofNullable(workQueue.poll(20, TimeUnit.MILLISECONDS));
         } catch (InterruptedException e) {
             return Optional.empty();
         }

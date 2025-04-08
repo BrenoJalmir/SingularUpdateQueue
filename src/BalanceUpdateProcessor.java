@@ -12,6 +12,13 @@ public class BalanceUpdateProcessor {
         this.updateQueue.start();
     }
 
+    public BalanceUpdateProcessor(Bank bank) {
+        this.updateQueue = new SingularUpdateQueue<>();
+        this.bank = bank;
+        this.updateQueue.setHandler(this::doAction);
+        this.updateQueue.start();
+    }
+
     private String doAction(String message) {
         try {
             StringTokenizer tokenizer = new StringTokenizer(message, "|");
